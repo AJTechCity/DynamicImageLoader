@@ -8,6 +8,7 @@
             return $data;
         }else{
             new Returns.error(400, "Invalid JSON has been stored");
+            exit;
         }
     }
 
@@ -17,6 +18,7 @@
             file_put_contents($path, $data);
         }else{
             new Returns.error(400, "Invalid JSON data has been supplied");
+            exit;
         }
     }
 

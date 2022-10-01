@@ -48,9 +48,11 @@
                     break;
             }
             imagedestroy($img);
+            exit;
         }else{
             header("Content-type:application/json");
             new Returns().error(500, "Error processing Image");
+            exit;
         }
 
     }else{
