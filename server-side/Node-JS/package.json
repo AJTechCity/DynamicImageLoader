@@ -1,0 +1,19 @@
+{
+    "name":"dynamic-image-loader-by-aj-tech-city",
+    "description":"An easy to use set of tools that allow you to dynamically load images (from low res to high res) asynchronously so users are not left waiting to access your services",
+    "version":"1.0.0",
+    "scripts":{
+    },
+    "repository": {
+        "type":"git",
+        "url":"https://github.com/AJTechCity/DynamicImageLoader.git",
+    },
+    "keywords":[],
+    "author":"Arun Dutta-Plummer from AJ Tech City",
+    "license":"ISC",
+    "bugs":{
+        "url":"https://github.com/AJTechCity/DynamicImageLoader/issues"
+    },
+    "homepage":"https://github.com/AJTechCity/DynamicImageLoader"
+
+}
