@@ -5,7 +5,7 @@
         if($data!=null){
             return $data
         }else{
-            return(array("status"=>"error", "status_code"=>"description"=>"Error reading database, JSON is not in the correct format"));
+            return false;
         }
     }
 

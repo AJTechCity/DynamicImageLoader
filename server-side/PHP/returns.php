@@ -9,6 +9,7 @@
                 "description"=>$description,
                 "data"=>$data
             )));
+            exit;
         }
     }
 
