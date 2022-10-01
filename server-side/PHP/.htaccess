@@ -1,3 +1,25 @@
+# OPTIONAL START #
+
+    # Deny access to .htaccess
+    <Files .htaccess>
+    Order allow,deny
+    Deny from all
+    </Files>
+
+    # Disable directory browsing 
+    Options -Indexes
+
+    # Hide access to your plain image files (Optional)
+    IndexIgnore *.png *.jpeg *.jpg *.gif *.svg
+
+    # Deny access to files with extension .json (Hide your Image DB)
+    <FilesMatch "\.(json|JSON)$">
+    Order allow,deny
+    Deny from all
+    </FilesMatch>
+
+# OPTIONAL END #
+
 Options +FollowSymLinks
 RewriteEngine On
 
