@@ -5,7 +5,7 @@
     function loadJSONDatabase(string $path="php-image-database.json"){
         $data = json_decode(file_get_contents($path));
         if($data!=null){
-            return $data
+            return $data;
         }else{
             new Returns.error(400, "Invalid JSON has been stored");
         }
