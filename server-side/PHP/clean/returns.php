@@ -9,7 +9,16 @@
                 "description"=>$description,
                 "data"=>$data
             )));
-            exit;
+        }
+
+        public function error(int $status_code, string $description, array $data=null){
+            http_response_code($status_code);
+            print_r(json_encode(array(
+                "status"=>"error",
+                "status_code"=>$status_code,
+                "description"=>$description,
+                "data"=>$data
+            )));
         }
     }
 

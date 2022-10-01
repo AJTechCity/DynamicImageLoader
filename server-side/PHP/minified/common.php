@@ -1,0 +1,1 @@
+<?php $CONFIG_DATA=array("BASE_URI"=>"https://images.example.com","UUID_LENGTH"=>32 ); ?>
