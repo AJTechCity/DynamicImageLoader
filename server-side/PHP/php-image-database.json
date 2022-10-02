@@ -1,16 +1,7 @@
 {
-    "000":{
-        "id":"000",
-        "name":"test.png",
-        "file_name":"test.png",
-        "px_height":300,
-        "px_width":300
-    },
     "ID":{
         "id":"ID",
         "name":"NAME",
-        "file_name":"FILE NAME",
-        "px_height": "PIXEL HEIGHT",
-        "px_width": "PIXEL WIDTH"
+        "file_name":"FILE NAME"
     }
 }
