@@ -7,13 +7,9 @@ class AJTCDynamicImage extends HTMLElement{
     
     connectedCallback(){
         this.url = this.getAttribute("src");
-        
-        this.xhr = new XMLHttpRequest();
-        this.xhr.onload = () => {
-            
-        }
-
+        //this.parentNode.removeChild(this);
         this._img = document.createElement("img");
+        this._img.setAttribute("res", 0);
         this._img.onload = () => {
             this.loadNextImage();
         };
@@ -23,7 +19,6 @@ class AJTCDynamicImage extends HTMLElement{
             this.url = this.url.substring(0, scale_index);
         }
         this.url = this.url.replace("?s=")
-        this._img.src = this.url+"?s=0.1";
         this.parentNode.appendChild(this._img);
         
         this.loadNextImage();
@@ -36,25 +31,32 @@ class AJTCDynamicImage extends HTMLElement{
     }
     
     async loadNextImage(){
-        if(this.currentScale < this.original_scale){
-            //console.log(`Current Scale: ${this.currentScale} -> Original Scale: ${this.original_scale}`);
-            this.currentScale = (parseFloat(this.currentScale)+0.1).toFixed(1);
-            this._img.src = this.url + `?s=${this.currentScale}`;
+        this.currentScale = (parseFloat(this.currentScale)+0.1).toFixed(1);
+        if(this.currentScale <= this.original_scale){
+            this.xhr = new XMLHttpRequest();
+            this.xhr.onreadystatechange = (e, scale = this.currentScale) => {
+                if(this.xhr.readyState === 4 && this.xhr.status === 200){
+                    this.r = new FileReader();
+                    this.r.onloadend = () =>{
+                        this._img.src = this.r.result;
+                        this._img.setAttribute("res", scale);
+                        this.loadNextImage();
+                    };
+                    this._res = this.xhr.response;
+                    this.r.readAsDataURL(this._res);
+                    this.xhr = null;
+                    this._res=null;
+                }
+            }
+            this.xhr.open("GET", this.url + `?s=${this.currentScale}`);
+            this.xhr.setRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            this.xhr.setRequestHeader("Pragma", "no-cache");
+            this.xhr.setRequestHeader("Expires", "0");
+            this.xhr.responseType = 'blob';
+            this.xhr.send();
         }
     }
 }
 
 
 window.customElements.define("ajtc-dynamic-image", AJTCDynamicImage);
-
-/*async function AJTCDynamicImage(url){
-    console.log(url)
-}
-
-const imgs = document.getElementsByClassName("AJTC-Dynamic-Image");
-for (var img in imgs){
-    AJTCDynamicImage(img.getAttribute("src"));
-    img.setAttribute("src", null);
-}*/
-
-console.log("h");
