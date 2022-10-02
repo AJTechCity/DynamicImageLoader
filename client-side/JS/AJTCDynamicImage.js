@@ -36,7 +36,7 @@ class AJTCDynamicImage extends HTMLElement{
     }
     
     async loadNextImage(){
-        if(this.currentScale != this.original_scale){
+        if(this.currentScale <= this.original_scale){
             //console.log(`Current Scale: ${this.currentScale} -> Original Scale: ${this.original_scale}`);
             this.currentScale = (parseFloat(this.currentScale)+0.1).toFixed(1);
             this._img.src = this.url + `?s=${this.currentScale}`;
